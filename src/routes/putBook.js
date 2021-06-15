@@ -11,7 +11,7 @@ const route = {
     const { name, pageCount, readPage } = data
     const index = books.findIndex((book) => book.id === id)
 
-    const isSucces = index !== -1 || name || readPage < pageCount
+    const isSucces = index !== -1 && name && readPage <= pageCount
 
     if (isSucces) {
       books[index] = {
@@ -21,15 +21,15 @@ const route = {
       }
 
       const response = h.response({
-        status: 'succes',
+        status: 'success',
         message: 'Buku berhasil diperbarui',
       })
       response.code(200)
       return response
     }
 
-    const failMsg = 'Gagal memperbaharui data buku. Id tidak ditemukan'
-    const code = 404
+    let failMsg = 'Gagal memperbarui buku. Id tidak ditemukan'
+    let code = 404
 
     if (!name) {
       failMsg = 'Gagal memperbarui buku. Mohon isi nama buku'

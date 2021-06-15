@@ -12,7 +12,7 @@ const route = {
       books.splice(index, 1)
       const response = h.response({
         status: 'success',
-        message: 'Buku berhasul dihapus',
+        message: 'Buku berhasil dihapus',
       })
       response.code(200)
       return response

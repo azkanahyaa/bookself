@@ -17,12 +17,11 @@ const route = {
 
     const newBook = { ...body, id, finished, insertedAt, updatedAt }
     console.log(newBook)
+    if (name && pageCount >= readPage) books.push(newBook)
 
-    books.push(newBook)
+    const isSuccess = books.some((book) => book.id === id)
 
-    const isSucces = books.some((book) => book.id = id)
-
-    if (isSucces) {
+    if (isSuccess) {
       const response = h.response({
         status: 'success',
         message: 'Buku berhasil ditambahkan',

@@ -13,6 +13,8 @@
       "semi": "off",
       "linebreak-style": ["error", "windows"],
       "object-curly-spacing": ["error", "always"],
-      "max-len": ["error", { "code": 100 }]
+      "max-len": ["error", { "code": 100 }],
+      "array-bracket-spacing": ["error", "always"],
+      "no-console": "warn"
   }
 }
