@@ -10,7 +10,7 @@ const route = {
 
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
     const nanoId = customAlphabet(alphabet, 8)
-		const id = nanoId()
+    const id = nanoId()
     const finished = pageCount === readPage
     const insertedAt = new Date().toISOString()
     const updatedAt = insertedAt
