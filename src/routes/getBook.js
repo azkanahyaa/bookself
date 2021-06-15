@@ -6,7 +6,7 @@ const route = {
   handler: (request, h) => {
     const { id } = request.params
     const book = books.find((book) => book.id === id)
-		console.log(book)
+    console.log(book)
 
     if (book) {
       return {
