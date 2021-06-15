@@ -8,10 +8,12 @@ const route = {
 
     const data = request.payload
     const updatedAt = new Date().toISOString()
-
+    const { name, pageCount, readPage } = data
     const index = books.findIndex((book) => book.id === id)
 
-    if (index !== -1) {
+    const isSucces = index !== -1 || name || readPage < pageCount
+
+    if (isSucces) {
       books[index] = {
         ...books[index],
         ...data,
@@ -20,17 +22,27 @@ const route = {
 
       const response = h.response({
         status: 'succes',
-        message: 'Buku berhasil ditambahkan',
+        message: 'Buku berhasil diperbarui',
       })
       response.code(200)
       return response
     }
 
+    const failMsg = 'Gagal memperbaharui data buku. Id tidak ditemukan'
+    const code = 404
+
+    if (!name) {
+      failMsg = 'Gagal memperbarui buku. Mohon isi nama buku'
+      code = 400
+    } else if (readPage > pageCount) {
+      failMsg = 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount'
+      code = 400
+    }
     const response = h.response({
       status: 'fail',
-      message: 'Gagal memperbaharui data buku. Id tidak ditemukan',
+      message: failMsg,
     })
-    response.code(404)
+    response.code(code)
     return response
   },
 }

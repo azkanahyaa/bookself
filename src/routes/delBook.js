@@ -20,7 +20,7 @@ const route = {
 
     const response = h.response({
       status: 'fail',
-      message: 'Catatan gagal dihapus. Id tidak ditemukan',
+      message: 'Buku gagal dihapus. Id tidak ditemukan',
     })
     response.code(404)
     return response

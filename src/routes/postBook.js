@@ -6,7 +6,7 @@ const route = {
   path: '/books',
   handler: (request, h) => {
     const body = request.payload
-    const { pageCount, readPage } = body
+    const { name, pageCount, readPage } = body
 
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
     const nanoId = customAlphabet(alphabet, 8)
@@ -25,7 +25,7 @@ const route = {
     if (isSucces) {
       const response = h.response({
         status: 'success',
-        message: 'Buku baru berhasil ditambahkan',
+        message: 'Buku berhasil ditambahkan',
         data: {
           bookId: id,
         },
@@ -33,11 +33,23 @@ const route = {
       response.code(201)
       return response
     }
+
+    let failMsg = 'Buku gagal ditambahkan'
+    let code = 500
+
+    if (!name) {
+      failMsg = 'Gagal menambahkan buku. Mohon isi nama buku'
+      code = 400
+    } else if (readPage > pageCount) {
+      failMsg = 'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount'
+      code = 400
+    }
+
     const response = h.response({
       status: 'fail',
-      message: 'Catatan gagal ditambahkan',
+      message: failMsg,
     })
-    response.code('500')
+    response.code(code)
     return response
   },
 }
