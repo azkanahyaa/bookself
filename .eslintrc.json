@@ -11,6 +11,8 @@
   },
   "rules": {
       "semi": "off",
-      "linebreak-style": ["error", "windows"]
+      "linebreak-style": ["error", "windows"],
+      "object-curly-spacing": ["error", "always"],
+      "max-len": ["error", { "code": 100 }]
   }
 }
