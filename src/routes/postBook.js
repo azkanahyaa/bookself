@@ -2,14 +2,15 @@ const { customAlphabet } = require('nanoid')
 const books = require('../books')
 
 const route = {
-  method: 'GET',
+  method: 'POST',
   path: '/books',
   handler: (request, h) => {
     const body = request.payload
     const { pageCount, readPage } = body
 
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
-    const id = customAlphabet(alphabet, 8)
+    const nanoId = customAlphabet(alphabet, 8)
+		const id = nanoId()
     const finished = pageCount === readPage
     const insertedAt = new Date().toISOString()
     const updatedAt = insertedAt
